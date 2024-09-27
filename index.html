@@ -105,24 +105,33 @@
             </select>
         </div>
 
-        <button type="button" onclick="calculateIMC()">Enviar Respostas e Calcular IMC</button>
+        <div class="question">
+            <label for="health">Você tem algum problema de saúde (hipertensão, diabetes, problemas cardíacos)?</label>
+            <select id="health" required>
+                <option value="">Selecione</option>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+        </div>
+
+        <button type="button" onclick="calculateEligibility()">Enviar Respostas e Verificar Elegibilidade</button>
     </form>
 
     <p id="result"></p>
 </div>
 
 <script>
-    function calculateIMC() {
+    function calculateEligibility() {
         // Coletar os dados do formulário
         var weight = document.getElementById("weight").value;
         var height = document.getElementById("height").value / 100; // converter altura para metros
         var name = document.getElementById("name").value;
-        var age = document.getElementById("age").value;
         var activity = document.getElementById("activity").value;
         var goal = document.getElementById("goal").value;
+        var health = document.getElementById("health").value;
 
         // Verificar se todos os campos estão preenchidos
-        if (!weight || !height || !name || !age || !activity || !goal) {
+        if (!weight || !height || !name || !activity || !goal || !health) {
             alert("Por favor, preencha todos os campos.");
             return;
         }
@@ -131,22 +140,22 @@
         var imc = weight / (height * height);
         var imcResult = imc.toFixed(2);
 
-        // Definir o feedback com base no IMC
+        // Parâmetros de avaliação
         var feedback = "";
-        if (imc < 18.5) {
-            feedback = "Você está abaixo do peso.";
-        } else if (imc >= 18.5 && imc < 24.9) {
-            feedback = "Seu peso está normal.";
-        } else if (imc >= 25 && imc < 29.9) {
-            feedback = "Você está com sobrepeso.";
-        } else {
-            feedback = "Você está com obesidade.";
+        var eligible = false;
+
+        if (imc >= 25 && health === "Não") {
+            eligible = true;
+            feedback = "Você está apto(a) para o procedimento de redução de gordura.";
+        } else if (imc < 25) {
+            feedback = "Seu IMC está abaixo do recomendado para este procedimento.";
+        } else if (health === "Sim") {
+            feedback = "Você tem problemas de saúde que podem impedir a realização do procedimento.";
         }
 
         // Exibir o resultado para o usuário
         document.getElementById("result").innerHTML = `
             <strong>${name}</strong>, obrigado por responder ao questionário! <br>
-            Sua idade: ${age} anos <br>
             Seu IMC é <strong>${imcResult}</strong>. <br>
             ${feedback} <br>
             Seu nível de atividade física: ${activity} <br>
