@@ -93,6 +93,16 @@
             <input type="number" id="weight" placeholder="Digite seu peso" required>
         </div>
 
+        <div class="question">
+            <label for="imc_calculated">Você já calculou seu IMC ou percentual de gordura corporal?</label>
+            <select id="imc_calculated" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+            <label for="imc_value">Se sim, qual é o valor do IMC ou percentual de gordura?</label>
+            <input type="text" id="imc_value" placeholder="Digite o valor do IMC ou percentual de gordura">
+        </div>
+
         <!-- Histórico de Saúde -->
         <div class="question">
             <label>Você já foi diagnosticado com algum problema de saúde relacionado ao peso ou metabolismo?</label>
@@ -158,14 +168,14 @@
             </select>
         </div>
 
-        <button type="button" onclick="calculateEligibility()">Enviar Respostas e Verificar Elegibilidade</button>
+        <button type="button" onclick="calculateIMC()">Enviar Respostas e Verificar Elegibilidade</button>
     </form>
 
     <p id="result"></p>
 </div>
 
 <script>
-    function calculateEligibility() {
+    function calculateIMC() {
         var weight = document.getElementById("weight").value;
         var height = document.getElementById("height").value / 100; // converter altura para metros
         var name = document.getElementById("name").value;
