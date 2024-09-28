@@ -36,6 +36,20 @@
         label {
             font-weight: bold;
         }
+        .analysis {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+        }
+        .analysis p {
+            margin: 0;
+        }
+        .imc-level {
+            font-weight: bold;
+            color: red;
+        }
         p#result {
             font-size: 18px;
             font-weight: bold;
@@ -43,10 +57,6 @@
         }
         .question {
             margin-bottom: 15px;
-        }
-        .imc-level {
-            font-weight: bold;
-            color: red;
         }
     </style>
 </head>
@@ -94,12 +104,12 @@
         </div>
 
         <div class="question">
-            <label for="imc_calculated">Você já calculou seu IMC ou percentual de gordura corporal?</label>
+            <label>Você já calculou seu IMC ou percentual de gordura corporal?</label>
             <select id="imc_calculated" required>
                 <option value="Não">Não</option>
                 <option value="Sim">Sim</option>
             </select>
-            <label for="imc_value">Se sim, qual é o valor do IMC ou percentual de gordura?</label>
+            <label>Se sim, qual é o valor do IMC ou percentual de gordura?</label>
             <input type="text" id="imc_value" placeholder="Digite o valor do IMC ou percentual de gordura">
         </div>
 
@@ -243,7 +253,7 @@
         <button type="button" onclick="calculateIMC()">Enviar Respostas e Verificar Elegibilidade</button>
     </form>
 
-    <p id="result"></p>
+    <div id="result" class="analysis" style="display:none;"></div>
 </div>
 
 <script>
@@ -266,42 +276,45 @@
         var feedback = "";
         if (imc_value >= 40.0) {
             feedback = `
-                <span class="imc-level">Obesidade grau III</span><br>
-                Aqui o sinal é vermelho, com forte probabilidade de já existirem doenças muito graves associadas. O tratamento deve ser ainda mais urgente.
+                <p><strong>${name}</strong>, seu IMC é <strong>${imcResult}</strong>.</p>
+                <p><span class="imc-level">Obesidade grau III</span></p>
+                <p>Aqui o sinal é vermelho, com forte probabilidade de já existirem doenças muito graves associadas. O tratamento deve ser ainda mais urgente.</p>
             `;
         } else if (imc_value >= 35.0 && imc_value <= 39.9) {
             feedback = `
-                <span class="imc-level">Obesidade grau II</span><br>
-                Mesmo que seus exames aparentem estar normais, é hora de se cuidar, iniciando mudanças no estilo de vida com o acompanhamento próximo de profissionais de saúde.
+                <p><strong>${name}</strong>, seu IMC é <strong>${imcResult}</strong>.</p>
+                <p><span class="imc-level">Obesidade grau II</span></p>
+                <p>Mesmo que seus exames aparentem estar normais, é hora de se cuidar, iniciando mudanças no estilo de vida com o acompanhamento próximo de profissionais de saúde.</p>
             `;
         } else if (imc_value >= 30.0 && imc_value <= 34.9) {
             feedback = `
-                <span class="imc-level">Obesidade grau I</span><br>
-                Sinal de alerta! Chegou na hora de se cuidar, mesmo que seus exames sejam normais. Vamos dar início a mudanças hoje! Cuide de sua alimentação e comece o acompanhamento com nutricionista e/ou endocrinologista.
+                <p><strong>${name}</strong>, seu IMC é <strong>${imcResult}</strong>.</p>
+                <p><span class="imc-level">Obesidade grau I</span></p>
+                <p>Sinal de alerta! Chegou na hora de se cuidar, mesmo que seus exames sejam normais. Vamos dar início a mudanças hoje! Cuide de sua alimentação e comece o acompanhamento com nutricionista e/ou endocrinologista.</p>
             `;
         } else if (imc_value >= 25.0 && imc_value <= 29.9) {
             feedback = `
-                <span class="imc-level">Sobrepeso</span><br>
-                Ele é, na verdade, uma pré-obesidade e muitas pessoas nessa faixa já apresentam doenças associadas, como diabetes e hipertensão. Importante rever hábitos e buscar ajuda antes de entrar na faixa da obesidade.
+                <p><strong>${name}</strong>, seu IMC é <strong>${imcResult}</strong>.</p>
+                <p><span class="imc-level">Sobrepeso</span></p>
+                <p>Ele é, na verdade, uma pré-obesidade e muitas pessoas nessa faixa já apresentam doenças associadas, como diabetes e hipertensão. Importante rever hábitos e buscar ajuda antes de entrar na faixa da obesidade.</p>
             `;
         } else if (imc_value >= 18.6 && imc_value <= 24.9) {
             feedback = `
-                <span class="imc-level">Peso normal</span><br>
-                Que bom que você está com o peso normal! Continue mantendo um estilo de vida ativo e uma alimentação equilibrada para permanecer saudável.
+                <p><strong>${name}</strong>, seu IMC é <strong>${imcResult}</strong>.</p>
+                <p><span class="imc-level">Peso normal</span></p>
+                <p>Que bom que você está com o peso normal! Continue mantendo um estilo de vida ativo e uma alimentação equilibrada para permanecer saudável.</p>
             `;
         } else {
             feedback = `
-                <span class="imc-level">Abaixo do peso</span><br>
-                Procure um médico. Algumas pessoas têm um baixo peso por características do seu organismo, mas outras podem estar enfrentando problemas como desnutrição. É importante saber qual é o caso.
+                <p><strong>${name}</strong>, seu IMC é <strong>${imcResult}</strong>.</p>
+                <p><span class="imc-level">Abaixo do peso</span></p>
+                <p>Procure um médico. Algumas pessoas têm um baixo peso por características do seu organismo, mas outras podem estar enfrentando problemas como desnutrição. É importante saber qual é o caso.</p>
             `;
         }
 
         // Exibir o resultado formatado e o feedback personalizado
-        document.getElementById("result").innerHTML = `
-            <strong>${name}</strong>, obrigado por responder ao questionário! <br>
-            Seu IMC é <strong>${imcResult}</strong>. <br>
-            ${feedback}
-        `;
+        document.getElementById("result").style.display = 'block';
+        document.getElementById("result").innerHTML = feedback;
     }
 </script>
 
