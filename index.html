@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionário de Avaliação - Procedimento de Redução de Gordura</title>
+    <title>Questionário de Avaliação - Procedimento de Redução de Gordura Corporal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        input, select, button {
+        input, select, button, textarea {
             padding: 10px;
             margin: 10px 0;
             width: 100%;
@@ -49,10 +49,10 @@
 <body>
 
 <div class="container">
-    <h1>Questionário de Avaliação - Procedimento de Redução de Gordura</h1>
+    <h1>Questionário de Avaliação - Procedimento de Redução de Gordura Corporal</h1>
 
     <form id="form">
-        <!-- Perguntas do questionário -->
+        <!-- Dados Pessoais -->
         <div class="question">
             <label for="name">Nome Completo:</label>
             <input type="text" id="name" placeholder="Digite seu nome completo" required>
@@ -74,7 +74,7 @@
         </div>
 
         <div class="question">
-            <label for="height">Altura (cm):</label>
+            <label for="height">Altura (em cm):</label>
             <input type="number" id="height" placeholder="Digite sua altura" required>
         </div>
 
@@ -84,33 +84,77 @@
         </div>
 
         <div class="question">
-            <label for="activity">Quantas vezes por semana você pratica atividade física?</label>
-            <select id="activity" required>
-                <option value="">Selecione</option>
+            <label for="imc">Você já calculou seu IMC ou percentual de gordura corporal?</label>
+            <select id="imc" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+            <label for="imc_value">Se sim, qual é o valor do IMC ou percentual de gordura?</label>
+            <input type="number" id="imc_value" placeholder="Digite o valor do IMC ou percentual de gordura">
+        </div>
+
+        <!-- Histórico de Saúde -->
+        <div class="question">
+            <label>Você já foi diagnosticado com algum problema de saúde relacionado ao peso ou metabolismo?</label>
+            <select id="health_diagnosis" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+            <label>Se sim, quais problemas?</label>
+            <textarea id="health_problems" placeholder="Ex: Hipertensão, Diabetes Tipo 1, Hipotireoidismo, etc."></textarea>
+        </div>
+
+        <!-- Tentativas Anteriores de Emagrecimento -->
+        <div class="question">
+            <label>Você já tentou outros métodos de emagrecimento?</label>
+            <select id="previous_attempts" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+
+            <label>Se sim, quais métodos você tentou anteriormente? (Marque todas que se aplicam)</label>
+            <textarea id="attempts_methods" placeholder="Ex: Dietas restritivas, Medicamentos, Cirurgia bariátrica, etc."></textarea>
+
+            <label>Quais foram os resultados obtidos com esses métodos?</label>
+            <select id="attempts_results">
+                <option value="Perda significativa de peso">Perda significativa de peso</option>
+                <option value="Perda moderada de peso">Perda moderada de peso</option>
+                <option value="Não houve perda de peso">Não houve perda de peso</option>
+                <option value="Ganho de peso">Ganho de peso</option>
+            </select>
+
+            <label>Você já recuperou o peso perdido após algum desses métodos?</label>
+            <select id="regained_weight">
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+        </div>
+
+        <!-- Hábitos de Vida e Atividade Física -->
+        <div class="question">
+            <label>Quantas vezes por semana você pratica atividade física?</label>
+            <select id="physical_activity" required>
                 <option value="Não pratico">Não pratico</option>
                 <option value="1 a 2 vezes">1 a 2 vezes</option>
                 <option value="3 a 4 vezes">3 a 4 vezes</option>
-                <option value="Mais de 5 vezes">Mais de 5 vezes</option>
+                <option value="5 ou mais vezes">5 ou mais vezes</option>
             </select>
         </div>
 
+        <!-- Motivação e Objetivos -->
         <div class="question">
-            <label for="goal">Qual é seu objetivo principal com este procedimento?</label>
-            <select id="goal" required>
-                <option value="">Selecione</option>
-                <option value="Redução de gordura corporal">Redução de gordura corporal</option>
-                <option value="Perda de peso geral">Perda de peso geral</option>
-                <option value="Melhora da saúde">Melhora da saúde</option>
-                <option value="Melhora da aparência física">Melhora da aparência física</option>
-            </select>
+            <label>Qual é seu objetivo principal com este procedimento de redução de gordura corporal?</label>
+            <textarea id="main_goal" placeholder="Ex: Reduzir gordura localizada, Melhorar a saúde, etc."></textarea>
         </div>
 
+        <!-- Comprometimento e Expectativas -->
         <div class="question">
-            <label for="health">Você tem algum problema de saúde (hipertensão, diabetes, problemas cardíacos)?</label>
-            <select id="health" required>
-                <option value="">Selecione</option>
+            <label>Você está motivado(a) para seguir um plano de acompanhamento após o procedimento?</label>
+            <select id="commitment" required>
+                <option value="Sim, estou completamente comprometido(a)">Sim, estou completamente comprometido(a)</option>
+                <option value="Sim, com algumas orientações adicionais">Sim, com algumas orientações adicionais</option>
+                <option value="Não tenho certeza">Não tenho certeza</option>
                 <option value="Não">Não</option>
-                <option value="Sim">Sim</option>
             </select>
         </div>
 
@@ -122,44 +166,38 @@
 
 <script>
     function calculateEligibility() {
-        // Coletar os dados do formulário
         var weight = document.getElementById("weight").value;
         var height = document.getElementById("height").value / 100; // converter altura para metros
         var name = document.getElementById("name").value;
-        var activity = document.getElementById("activity").value;
-        var goal = document.getElementById("goal").value;
-        var health = document.getElementById("health").value;
+        var imc = document.getElementById("imc").value;
+        var health_diagnosis = document.getElementById("health_diagnosis").value;
+        var commitment = document.getElementById("commitment").value;
 
-        // Verificar se todos os campos estão preenchidos
-        if (!weight || !height || !name || !activity || !goal || !health) {
+        // Verificar se todos os campos obrigatórios estão preenchidos
+        if (!weight || !height || !name || !imc || !health_diagnosis || !commitment) {
             alert("Por favor, preencha todos os campos.");
             return;
         }
 
         // Cálculo do IMC
-        var imc = weight / (height * height);
-        var imcResult = imc.toFixed(2);
+        var imc_value = weight / (height * height);
+        var imcResult = imc_value.toFixed(2);
 
-        // Parâmetros de avaliação
+        // Definir feedback com base no IMC e no diagnóstico de saúde
         var feedback = "";
-        var eligible = false;
-
-        if (imc >= 25 && health === "Não") {
-            eligible = true;
+        if (imc_value >= 25 && health_diagnosis === "Não") {
             feedback = "Você está apto(a) para o procedimento de redução de gordura.";
-        } else if (imc < 25) {
+        } else if (imc_value < 25) {
             feedback = "Seu IMC está abaixo do recomendado para este procedimento.";
-        } else if (health === "Sim") {
+        } else if (health_diagnosis === "Sim") {
             feedback = "Você tem problemas de saúde que podem impedir a realização do procedimento.";
         }
 
-        // Exibir o resultado para o usuário
+        // Exibir resultado ao usuário
         document.getElementById("result").innerHTML = `
             <strong>${name}</strong>, obrigado por responder ao questionário! <br>
             Seu IMC é <strong>${imcResult}</strong>. <br>
             ${feedback} <br>
-            Seu nível de atividade física: ${activity} <br>
-            Seu objetivo principal: ${goal} <br>
         `;
     }
 </script>
