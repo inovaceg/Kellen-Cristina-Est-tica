@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Questionário de Avaliação - Procedimento de Redução de Gordura Corporal</title>
+    <title>Avaliação Prévia para Hidro Lipo Five com Dra. Kellen Cristina</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -44,12 +44,22 @@
         .question {
             margin-bottom: 15px;
         }
+        .imc-level {
+            font-weight: bold;
+            color: red;
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Questionário de Avaliação - Procedimento de Redução de Gordura Corporal</h1>
+    <h1>Avaliação Prévia para Hidro Lipo Five com Dra. Kellen Cristina</h1>
+
+    <p>Bem-vindo(a) à Avaliação Prévia para o procedimento <strong>Hidro Lipo Five</strong> com a Dra. Kellen Cristina! Este questionário foi desenvolvido para ajudar você a descobrir se está apto(a) para realizar o procedimento de redução de gordura corporal de maneira eficaz e segura.</p>
+
+    <p>Ao responder as perguntas, você irá fornecer informações importantes sobre sua saúde, seus hábitos e seus objetivos de emagrecimento. Com base nas suas respostas, você receberá uma análise personalizada sobre seu IMC (Índice de Massa Corporal) e orientações para o seu próximo passo em direção à perda de peso e ao corpo que deseja.</p>
+
+    <p>Esse questionário é uma etapa essencial para garantir que o tratamento seja adequado para suas necessidades e que você alcance os melhores resultados com o <strong>Hidro Lipo Five</strong>. Preencha com atenção e descubra como podemos te ajudar a transformar sua vida!</p>
 
     <form id="form">
         <!-- Dados Pessoais -->
@@ -83,81 +93,6 @@
             <input type="number" id="weight" placeholder="Digite seu peso" required>
         </div>
 
-        <div class="question">
-            <label for="imc">Você já calculou seu IMC ou percentual de gordura corporal?</label>
-            <select id="imc" required>
-                <option value="Não">Não</option>
-                <option value="Sim">Sim</option>
-            </select>
-            <label for="imc_value">Se sim, qual é o valor do IMC ou percentual de gordura?</label>
-            <input type="number" id="imc_value" placeholder="Digite o valor do IMC ou percentual de gordura">
-        </div>
-
-        <!-- Histórico de Saúde -->
-        <div class="question">
-            <label>Você já foi diagnosticado com algum problema de saúde relacionado ao peso ou metabolismo?</label>
-            <select id="health_diagnosis" required>
-                <option value="Não">Não</option>
-                <option value="Sim">Sim</option>
-            </select>
-            <label>Se sim, quais problemas?</label>
-            <textarea id="health_problems" placeholder="Ex: Hipertensão, Diabetes Tipo 1, Hipotireoidismo, etc."></textarea>
-        </div>
-
-        <!-- Tentativas Anteriores de Emagrecimento -->
-        <div class="question">
-            <label>Você já tentou outros métodos de emagrecimento?</label>
-            <select id="previous_attempts" required>
-                <option value="Não">Não</option>
-                <option value="Sim">Sim</option>
-            </select>
-
-            <label>Se sim, quais métodos você tentou anteriormente? (Marque todas que se aplicam)</label>
-            <textarea id="attempts_methods" placeholder="Ex: Dietas restritivas, Medicamentos, Cirurgia bariátrica, etc."></textarea>
-
-            <label>Quais foram os resultados obtidos com esses métodos?</label>
-            <select id="attempts_results">
-                <option value="Perda significativa de peso">Perda significativa de peso</option>
-                <option value="Perda moderada de peso">Perda moderada de peso</option>
-                <option value="Não houve perda de peso">Não houve perda de peso</option>
-                <option value="Ganho de peso">Ganho de peso</option>
-            </select>
-
-            <label>Você já recuperou o peso perdido após algum desses métodos?</label>
-            <select id="regained_weight">
-                <option value="Não">Não</option>
-                <option value="Sim">Sim</option>
-            </select>
-        </div>
-
-        <!-- Hábitos de Vida e Atividade Física -->
-        <div class="question">
-            <label>Quantas vezes por semana você pratica atividade física?</label>
-            <select id="physical_activity" required>
-                <option value="Não pratico">Não pratico</option>
-                <option value="1 a 2 vezes">1 a 2 vezes</option>
-                <option value="3 a 4 vezes">3 a 4 vezes</option>
-                <option value="5 ou mais vezes">5 ou mais vezes</option>
-            </select>
-        </div>
-
-        <!-- Motivação e Objetivos -->
-        <div class="question">
-            <label>Qual é seu objetivo principal com este procedimento de redução de gordura corporal?</label>
-            <textarea id="main_goal" placeholder="Ex: Reduzir gordura localizada, Melhorar a saúde, etc."></textarea>
-        </div>
-
-        <!-- Comprometimento e Expectativas -->
-        <div class="question">
-            <label>Você está motivado(a) para seguir um plano de acompanhamento após o procedimento?</label>
-            <select id="commitment" required>
-                <option value="Sim, estou completamente comprometido(a)">Sim, estou completamente comprometido(a)</option>
-                <option value="Sim, com algumas orientações adicionais">Sim, com algumas orientações adicionais</option>
-                <option value="Não tenho certeza">Não tenho certeza</option>
-                <option value="Não">Não</option>
-            </select>
-        </div>
-
         <button type="button" onclick="calculateEligibility()">Enviar Respostas e Verificar Elegibilidade</button>
     </form>
 
@@ -169,35 +104,56 @@
         var weight = document.getElementById("weight").value;
         var height = document.getElementById("height").value / 100; // converter altura para metros
         var name = document.getElementById("name").value;
-        var imc = document.getElementById("imc").value;
-        var health_diagnosis = document.getElementById("health_diagnosis").value;
-        var commitment = document.getElementById("commitment").value;
 
         // Verificar se todos os campos obrigatórios estão preenchidos
-        if (!weight || !height || !name || !imc || !health_diagnosis || !commitment) {
+        if (!weight || !height || !name) {
             alert("Por favor, preencha todos os campos.");
             return;
         }
 
         // Cálculo do IMC
         var imc_value = weight / (height * height);
-        var imcResult = imc_value.toFixed(2);
+        var imcResult = imc_value.toFixed(1).replace(".", ","); // Formatar com uma casa decimal e substituir ponto por vírgula
 
-        // Definir feedback com base no IMC e no diagnóstico de saúde
+        // Definir feedback com base na faixa do IMC
         var feedback = "";
-        if (imc_value >= 25 && health_diagnosis === "Não") {
-            feedback = "Você está apto(a) para o procedimento de redução de gordura.";
-        } else if (imc_value < 25) {
-            feedback = "Seu IMC está abaixo do recomendado para este procedimento.";
-        } else if (health_diagnosis === "Sim") {
-            feedback = "Você tem problemas de saúde que podem impedir a realização do procedimento.";
+        if (imc_value >= 40.0) {
+            feedback = `
+                <span class="imc-level">Obesidade grau III</span><br>
+                Aqui o sinal é vermelho, com forte probabilidade de já existirem doenças muito graves associadas. O tratamento deve ser ainda mais urgente.
+            `;
+        } else if (imc_value >= 35.0 && imc_value <= 39.9) {
+            feedback = `
+                <span class="imc-level">Obesidade grau II</span><br>
+                Mesmo que seus exames aparentem estar normais, é hora de se cuidar, iniciando mudanças no estilo de vida com o acompanhamento próximo de profissionais de saúde.
+            `;
+        } else if (imc_value >= 30.0 && imc_value <= 34.9) {
+            feedback = `
+                <span class="imc-level">Obesidade grau I</span><br>
+                Sinal de alerta! Chegou na hora de se cuidar, mesmo que seus exames sejam normais. Vamos dar início a mudanças hoje! Cuide de sua alimentação e comece o acompanhamento com nutricionista e/ou endocrinologista.
+            `;
+        } else if (imc_value >= 25.0 && imc_value <= 29.9) {
+            feedback = `
+                <span class="imc-level">Sobrepeso</span><br>
+                Ele é, na verdade, uma pré-obesidade e muitas pessoas nessa faixa já apresentam doenças associadas, como diabetes e hipertensão. Importante rever hábitos e buscar ajuda antes de entrar na faixa da obesidade.
+            `;
+        } else if (imc_value >= 18.6 && imc_value <= 24.9) {
+            feedback = `
+                <span class="imc-level">Peso normal</span><br>
+                Que bom que você está com o peso normal! Continue mantendo um estilo de vida ativo e uma alimentação equilibrada para permanecer saudável.
+            `;
+        } else {
+            feedback = `
+                <span class="imc-level">Abaixo do peso</span><br>
+                Procure um médico. Algumas pessoas têm um baixo peso por características do seu organismo, mas outras podem estar enfrentando problemas como desnutrição. É importante saber qual é o caso.
+            `;
         }
 
-        // Exibir resultado ao usuário
+        // Exibir o resultado formatado e o feedback personalizado
         document.getElementById("result").innerHTML = `
             <strong>${name}</strong>, obrigado por responder ao questionário! <br>
             Seu IMC é <strong>${imcResult}</strong>. <br>
-            ${feedback} <br>
+            ${feedback}
         `;
     }
 </script>
