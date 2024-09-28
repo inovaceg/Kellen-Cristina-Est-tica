@@ -103,7 +103,7 @@
             <input type="text" id="imc_value" placeholder="Digite o valor do IMC ou percentual de gordura">
         </div>
 
-        <!-- Histórico de Saúde -->
+        <!-- Histórico de Saúde e Tentativas de Emagrecimento -->
         <div class="question">
             <label>Você já foi diagnosticado com algum problema de saúde relacionado ao peso ou metabolismo?</label>
             <select id="health_diagnosis" required>
@@ -112,6 +112,29 @@
             </select>
             <label>Se sim, quais problemas?</label>
             <textarea id="health_problems" placeholder="Ex: Hipertensão, Diabetes Tipo 1, Hipotireoidismo, etc."></textarea>
+        </div>
+
+        <div class="question">
+            <label>Você já consultou um médico ou nutricionista sobre seu peso?</label>
+            <select id="consulted_nutritionist" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+            <label>Se sim, está atualmente em acompanhamento?</label>
+            <select id="nutritionist_followup" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Você possui histórico familiar de problemas de saúde relacionados ao peso (como obesidade, diabetes, hipertensão)?</label>
+            <select id="family_history" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+            <label>Se sim, quais?</label>
+            <textarea id="family_problems" placeholder="Descreva os problemas"></textarea>
         </div>
 
         <!-- Tentativas Anteriores de Emagrecimento -->
@@ -126,7 +149,7 @@
             <textarea id="attempts_methods" placeholder="Ex: Dietas restritivas, Medicamentos, Cirurgia bariátrica, etc."></textarea>
 
             <label>Quais foram os resultados obtidos com esses métodos?</label>
-            <select id="attempts_results">
+            <select id="attempts_results" required>
                 <option value="Perda significativa de peso">Perda significativa de peso</option>
                 <option value="Perda moderada de peso">Perda moderada de peso</option>
                 <option value="Não houve perda de peso">Não houve perda de peso</option>
@@ -134,7 +157,7 @@
             </select>
 
             <label>Você já recuperou o peso perdido após algum desses métodos?</label>
-            <select id="regained_weight">
+            <select id="regained_weight" required>
                 <option value="Não">Não</option>
                 <option value="Sim">Sim</option>
             </select>
@@ -149,12 +172,61 @@
                 <option value="3 a 4 vezes">3 a 4 vezes</option>
                 <option value="5 ou mais vezes">5 ou mais vezes</option>
             </select>
+
+            <label>Qual tipo de exercício você pratica regularmente?</label>
+            <select id="exercise_type" required>
+                <option value="Caminhada">Caminhada</option>
+                <option value="Musculação">Musculação</option>
+                <option value="Corrida">Corrida</option>
+                <option value="Esportes coletivos">Esportes coletivos</option>
+                <option value="Yoga/Pilates">Yoga/Pilates</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Você sente que sua alimentação é equilibrada?</label>
+            <select id="balanced_diet" required>
+                <option value="Sim">Sim</option>
+                <option value="Não">Não</option>
+                <option value="Não tenho certeza">Não tenho certeza</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Quantas refeições você faz por dia?</label>
+            <select id="meals_per_day" required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4 ou mais">4 ou mais</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Você costuma comer alimentos ultraprocessados (ex: fast food, congelados, etc.)?</label>
+            <select id="processed_food" required>
+                <option value="Sim, frequentemente">Sim, frequentemente</option>
+                <option value="Sim, ocasionalmente">Sim, ocasionalmente</option>
+                <option value="Raramente">Raramente</option>
+                <option value="Nunca">Nunca</option>
+            </select>
         </div>
 
         <!-- Motivação e Objetivos -->
         <div class="question">
             <label>Qual é seu objetivo principal com este procedimento de redução de gordura corporal?</label>
-            <textarea id="main_goal" placeholder="Ex: Reduzir gordura localizada, Melhorar a saúde, etc."></textarea>
+            <textarea id="main_goal" placeholder="Ex: Reduzir gordura localizada, Melhorar a saúde, etc." required></textarea>
+        </div>
+
+        <div class="question">
+            <label>Qual é a quantidade de peso que você gostaria de perder?</label>
+            <select id="weight_loss_goal" required>
+                <option value="Menos de 5 kg">Menos de 5 kg</option>
+                <option value="Entre 5 e 10 kg">Entre 5 e 10 kg</option>
+                <option value="Entre 10 e 15 kg">Entre 10 e 15 kg</option>
+                <option value="Mais de 15 kg">Mais de 15 kg</option>
+            </select>
         </div>
 
         <!-- Comprometimento e Expectativas -->
