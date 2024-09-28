@@ -93,6 +93,71 @@
             <input type="number" id="weight" placeholder="Digite seu peso" required>
         </div>
 
+        <!-- Histórico de Saúde -->
+        <div class="question">
+            <label>Você já foi diagnosticado com algum problema de saúde relacionado ao peso ou metabolismo?</label>
+            <select id="health_diagnosis" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+            <label>Se sim, quais problemas?</label>
+            <textarea id="health_problems" placeholder="Ex: Hipertensão, Diabetes Tipo 1, Hipotireoidismo, etc."></textarea>
+        </div>
+
+        <!-- Tentativas Anteriores de Emagrecimento -->
+        <div class="question">
+            <label>Você já tentou outros métodos de emagrecimento?</label>
+            <select id="previous_attempts" required>
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+
+            <label>Se sim, quais métodos você tentou anteriormente? (Marque todas que se aplicam)</label>
+            <textarea id="attempts_methods" placeholder="Ex: Dietas restritivas, Medicamentos, Cirurgia bariátrica, etc."></textarea>
+
+            <label>Quais foram os resultados obtidos com esses métodos?</label>
+            <select id="attempts_results">
+                <option value="Perda significativa de peso">Perda significativa de peso</option>
+                <option value="Perda moderada de peso">Perda moderada de peso</option>
+                <option value="Não houve perda de peso">Não houve perda de peso</option>
+                <option value="Ganho de peso">Ganho de peso</option>
+            </select>
+
+            <label>Você já recuperou o peso perdido após algum desses métodos?</label>
+            <select id="regained_weight">
+                <option value="Não">Não</option>
+                <option value="Sim">Sim</option>
+            </select>
+        </div>
+
+        <!-- Hábitos de Vida e Atividade Física -->
+        <div class="question">
+            <label>Quantas vezes por semana você pratica atividade física?</label>
+            <select id="physical_activity" required>
+                <option value="Não pratico">Não pratico</option>
+                <option value="1 a 2 vezes">1 a 2 vezes</option>
+                <option value="3 a 4 vezes">3 a 4 vezes</option>
+                <option value="5 ou mais vezes">5 ou mais vezes</option>
+            </select>
+        </div>
+
+        <!-- Motivação e Objetivos -->
+        <div class="question">
+            <label>Qual é seu objetivo principal com este procedimento de redução de gordura corporal?</label>
+            <textarea id="main_goal" placeholder="Ex: Reduzir gordura localizada, Melhorar a saúde, etc."></textarea>
+        </div>
+
+        <!-- Comprometimento e Expectativas -->
+        <div class="question">
+            <label>Você está motivado(a) para seguir um plano de acompanhamento após o procedimento?</label>
+            <select id="commitment" required>
+                <option value="Sim, estou completamente comprometido(a)">Sim, estou completamente comprometido(a)</option>
+                <option value="Sim, com algumas orientações adicionais">Sim, com algumas orientações adicionais</option>
+                <option value="Não tenho certeza">Não tenho certeza</option>
+                <option value="Não">Não</option>
+            </select>
+        </div>
+
         <button type="button" onclick="calculateEligibility()">Enviar Respostas e Verificar Elegibilidade</button>
     </form>
 
